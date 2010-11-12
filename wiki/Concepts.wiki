@@ -1,0 +1,65 @@
+#summary Basic concepts
+
+= Base concept =
+
+Wiking se veut un framework leger et modulable. Le core est donc tres basique.
+
+A l'appel d'un navigateur, Wiking procede en 3 etapes :
+
+INIT (chargement des bases, detection des modules presents, initialistion des constantes, __autoload)
+
+USER (Charge l'utilisateur courant, guest par defaut)
+
+NODE (Verifie les ACL, charge le noeud designe par l'URL)
+
+Le noeud est une forme serialisee d'un objet PHP (par ex.). Cet objet est une instance d'un objet derive de la classe Node (classe de base de Wiking). Dans le cas ou on a affaire a un node wiki, l'objet en etant deserialise, cree une instance de WikiNode (par ex.), qui fait partie du module Wiki. C'est ensuite ce module qui s'occupe des taches d'un wiki, notamment le rendu HTML.
+
+
+En terme de modules, ca donnerait pour le core :
+ - URL (qui lit et ecrit les url)
+ - USER (qui vehicule les données liées a l'utilisateur courant : droits, login, autres données de session, messages d'information)
+ - NODE (qui est la classe de base des noeuds de données, contient les ACL, gere les elements par defaut 404 et access denied notamment)
+ 
+Les extensions "de base" seraient : 
+ - WikiNode (dans ce module, il y a toutes les fonctions du wiki)
+ - MediaNode ou FileNode (gere les fichiers)
+ - Template (chargera le template pour les sorties HTML, ou autres qui en auraient l'utilite)
+
+
+= basic functions to implement =
+
+acl <- NODE
+
+login <- USER
+
+info to user <- USER
+
+search / indexing <- Module a part ? (voir dokuwiki devel:action_modes pour une vision des fonctions a implementer)
+
+editor / mediamanager <- WikiNode
+
+sitemap / robots.txt / rss <- Module a part ? (Peut etre un SpecialNode pour toutes les fonctions transversales/systeme, mais juste pour pas tout mettre dans Node )
+
+meta for page <- NODE ou wikiNode
+
+gzip <- NODE (output) ?
+
+= Usages =
+
+actions transversales ? (do=login, edit....)
+
+extend wiki syntax
+
+ ! login accross nodes
+
+fetch css/js
+
+Article multipage
+
+Extension / integration
+
+Farm
+
+Multilang + internationalisation interface
+
+Data aggregation
