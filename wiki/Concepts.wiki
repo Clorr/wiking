@@ -16,50 +16,35 @@ Le noeud est une forme serialisee d'un objet PHP (par ex.). Cet objet est une in
 
 
 En terme de modules, ca donnerait pour le core :
- - URL (qui lit et ecrit les url)
- - USER (qui vehicule les données liées a l'utilisateur courant : droits, login, autres données de session, messages d'information)
- - NODE (qui est la classe de base des noeuds de données, contient les ACL, gere les elements par defaut 404 et access denied notamment)
+  * URL (qui lit et ecrit les url)
+  * USER (qui vehicule les données liées a l'utilisateur courant : droits, login, autres données de session, messages d'information)
+  * NODE (qui est la classe de base des noeuds de données, contient les ACL, gere les elements par defaut 404 et access denied notamment)
  
 Les extensions "de base" seraient : 
- - WikiNode (dans ce module, il y a toutes les fonctions du wiki)
- - MediaNode ou FileNode (gere les fichiers)
- - Template (chargera le template pour les sorties HTML, ou autres qui en auraient l'utilite)
+  * WikiNode (dans ce module, il y a toutes les fonctions du wiki)
+  * MediaNode ou FileNode (gere les fichiers)
+  * Template (chargera le template pour les sorties HTML, ou autres qui en auraient l'utilite)
 
 
 = basic functions to implement =
-
-acl <- NODE
-
-login <- USER
-
-info to user <- USER
-
-search / indexing <- Module a part ? (voir dokuwiki devel:action_modes pour une vision des fonctions a implementer)
-
-editor / mediamanager <- WikiNode
-
-sitemap / robots.txt / rss <- Module a part ? (Peut etre un SpecialNode pour toutes les fonctions transversales/systeme, mais juste pour pas tout mettre dans Node )
-
-meta for page <- NODE ou wikiNode
-
-gzip <- NODE (output) ?
+  * acl <- NODE
+  * login <- USER
+  * info to user <- USER
+  * search / indexing <- Module a part ? (voir dokuwiki devel:action_modes pour une vision des fonctions a implementer)
+  * editor / mediamanager <- WikiNode
+  * sitemap / robots.txt / rss <- Module a part ? (Peut etre un SpecialNode pour toutes les fonctions transversales/systeme, mais juste pour pas tout mettre dans Node )
+  * meta for page <- NODE ou wikiNode
+  * gzip <- NODE (output) ?
 
 = Usages =
 
-actions transversales ? (do=login, edit....)
-
-extend wiki syntax
-
- ! login accross nodes
-
-fetch css/js
-
-Article multipage
-
-Extension / integration
-
-Farm
-
-Multilang + internationalisation interface
-
-Data aggregation
+Points a regler : 
+  * actions transversales ? (do=login, edit....)
+  * extend wiki syntax
+  * ! login accross nodes
+  * fetch css/js
+  * Article multipage
+  * Extension / integration
+  * Farm
+  * Multilang + internationalisation interface
+  * Data aggregation
