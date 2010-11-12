@@ -13,7 +13,7 @@ Le noeud est une forme serialisee d'un objet PHP (par ex.). Cet objet est une in
 
 
 En terme de modules, ca donnerait pour le core :
-  * URL (qui lit et ecrit les url)
+  * REQUEST (qui lit et ecrit les url)
   * USER (qui vehicule les données liées a l'utilisateur courant : droits, login, autres données de session, messages d'information)
   * NODE (qui est la classe de base des noeuds de données, contient les ACL, gere les elements par defaut 404 et access denied notamment)
  
