@@ -9,9 +9,9 @@ The structure of a wiking website is stored as a node tree. Each node is an inst
 
 Ex : 
 {{{
-  : WikiNode -> is a wiki page
-    :contact WikiNode -> is a wiki page
-    :blog BlogNode -> is a blog
+  :        WikiNode -> is a wiki page
+  :contact WikiNode -> is a wiki page
+  :blog    BlogNode -> is a blog
 }}}
 
 == Node controllers ==
@@ -25,3 +25,12 @@ A request to a Wiking app will load the appropriate Node, and launch the request
 (As Wiking is a farm, this is done in the 'animal' index.php, so this can be customized). 
 
 This procedure finds in the website nodetree which Node controller to load. Once loaded, the node is fired.
+
+Wiking itself doesn't do more than that. All the following action are done by the node controller.
+
+Ex: in the above site structure, if the url indicates :contact, then the corresponding WikiNode instance will be loaded.
+
+
+== Node rendering ==
+
+Once a node is loaded, by default, we perform the 'show' action (other actions are indicated by the 'do' parameter).
