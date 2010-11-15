@@ -1,0 +1,9 @@
+#summary What are the Wiking Benefits
+
+= Features =
+  * Farming
+  * Multi functional (wiki,blog,forum...)
+  * Extensible
+
+= More =
+  * Upgrading made easy
