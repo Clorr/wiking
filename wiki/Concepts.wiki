@@ -2,46 +2,26 @@
 
 = Base concept =
 
-Wiking se veut un framework leger et modulable. Le core est donc tres basique.
+The concept is to give a lightweight/versatile framework. Usual frameworks use a base Controller to do all the stuff. We should respect this in respect with MVC model. But how to do when we want to have functions like blog, wiki, forum... dispatched across the website ?
 
-A l'appel d'un navigateur, Wiking procede en 3 etapes :
-  * INIT (chargement des bases, detection des modules presents, initialistion des constantes, __autoload)
-  * USER (Charge l'utilisateur courant, guest par defaut)
-  * NODE (Verifie les ACL, charge le noeud designe par l'URL)
+== Node tree ==
+The structure of a wiking website is stored as a node tree. Each node is an instance of an Object, which inherited from the Node parent, that will act as the controller when loaded.
 
-Le noeud est une forme serialisee d'un objet PHP (par ex.). Cet objet est une instance d'un objet derive de la classe Node (classe de base de Wiking). Dans le cas ou on a affaire a un node wiki, l'objet en etant deserialise, cree une instance de WikiNode (par ex.), qui fait partie du module Wiki. C'est ensuite ce module qui s'occupe des taches d'un wiki, notamment le rendu HTML.
+Ex : 
+{{{
+  : WikiNode -> is a wiki page
+    :contact WikiNode -> is a wiki page
+    :blog BlogNode -> is a blog
+}}}
 
+== Node controllers ==
 
-En terme de modules, ca donnerait pour le core :
-  * REQUEST (qui lit et ecrit les url)
-  * USER (qui vehicule les données liées a l'utilisateur courant : droits, login, autres données de session, messages d'information)
-  * NODE (qui est la classe de base des noeuds de données, contient les ACL, gere les elements par defaut 404 et access denied notamment)
- 
-Les extensions "de base" seraient : 
-  * WikiNode (dans ce module, il y a toutes les fonctions du wiki)
-  * MediaNode ou FileNode (gere les fichiers)
-  * Template (chargera le template pour les sorties HTML, ou autres qui en auraient l'utilite)
+A request to a Wiking app will load the appropriate Node, and launch the requested action. Wiking is loaded in a first init procedure : 
+  # load system
+  # parse request
+  # load Node controller
+  # do the requested action
 
+(As Wiking is a farm, this is done in the 'animal' index.php, so this can be customized). 
 
-= basic functions to implement =
-  * acl <- NODE
-  * login <- USER
-  * info to user <- USER
-  * search / indexing <- Module a part ? (voir dokuwiki devel:action_modes pour une vision des fonctions a implementer)
-  * editor / mediamanager <- WikiNode
-  * sitemap / robots.txt / favicon.ico / crossdomain.xml / rss <- Module a part ? (Peut etre un SpecialNode pour toutes les fonctions transversales/systeme, mais juste pour pas tout mettre dans Node )
-  * meta for page <- NODE ou wikiNode
-  * gzip <- NODE (output) ?
-
-= Usages =
-
-Points a regler : 
-  * actions transversales ? (do=login, edit....)
-  * extend wiki syntax
-  * ! login accross nodes
-  * fetch css/js
-  * Article multipage
-  * Extension / integration
-  * Farm
-  * Multilang + internationalisation interface
-  * Data aggregation
+This procedure finds in the website nodetree which Node controller to load. Once loaded, the node is fired.
