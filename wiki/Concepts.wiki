@@ -46,11 +46,9 @@ Ex:
 {{{
    WikiNode, for the 'show' action does :
    - Create HTMLOutput
-   - Populates it with it's WikiNode data (title, content...) (remember :contact is an __instance__ of WikiNode)
+   - Populates it with it''s WikiNode data (title, content...) (remember :contact is an __instance__ of WikiNode)
    - Render this output, using template
 }}}
-
-
 
 
 
