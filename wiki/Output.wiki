@@ -1,0 +1,1 @@
+#summary Explains how output is handled
