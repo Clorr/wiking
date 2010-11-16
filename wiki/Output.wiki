@@ -1,1 +1,11 @@
 #summary Explains how output is handled
+
+= Output and Response =
+Once the noad has been loaded, it handles the do action. If, at this point, the node wants to return a response, it asks Output to create a response of the wanted type (usually HTML).
+
+Output is the main class that handles with output and caching.
+
+Response is the object created (instance) of the answer sent to browser.
+
+= Caching =
+Caching is done with parts the template asked for.
