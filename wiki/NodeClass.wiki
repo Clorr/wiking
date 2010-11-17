@@ -29,4 +29,4 @@ It could be useful to handle aliases. Let's see how.... (aliases table ?)
     # if nothing found the $node->missingchild() of the nearest ancestor of the node is called. Ex: :wiki:page1:non-existing-page calls missingchild() of the :wiki:page1 node.
   # Node is checked upon ACL (call to $node->ACLCheck())
   # A call to the corresponding do action si done ($node->do_xyz upon request.format)
-  # Output calls $node->render()
+  # Output calls $node->output()
