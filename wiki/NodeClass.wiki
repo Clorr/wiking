@@ -23,3 +23,9 @@ Useful, for blogs, forums, search URIs
 
 = Aliases =
 It could be useful to handle aliases. Let's see how.... (aliases table ?)
+
+= Node lifecycle =
+  # Node is created by W, that queries it from the datastore
+  # Node is checked upon ACL (call to $node->ACLCheck())
+  # A call to the corresponding do action si done ($node->do_xyz upon request.format)
+  # Output calls $node->render()
