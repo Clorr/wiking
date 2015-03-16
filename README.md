@@ -1,4 +1,4 @@
-#summary Principles for the wiking framework
+Principles for the wiking framework
 
 = Introduction =
 
