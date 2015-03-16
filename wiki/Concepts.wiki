@@ -7,7 +7,7 @@ NB: if you prefer, consider "Nodes" as pages
 The concept is to give a lightweight/versatile framework. Usual frameworks use a base Controller to do all the stuff. We should respect this in respect with MVC model. But how to do when we want to have functions like blog, wiki, forum... dispatched across the website ?
 
 == Node tree ==
-The structure of a wiking website is stored as a node tree. Each node is an instance of an Object, which inherited from the Node parent, that will act as the controller when loaded.
+The structure of a wiking website is stored as a node tree. Each node is an instance of a Node, that will act as the controller when loaded.
 
 Ex : 
 {{{
