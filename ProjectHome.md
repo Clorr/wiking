@@ -1,0 +1,3 @@
+The wiking project tries to merge the common websites architecture into one versatile framework.
+
+The goal is to have a common framework to develop wikis, blogs, forums on one single core engine. The framework should be versatile enough to be extensible at will...

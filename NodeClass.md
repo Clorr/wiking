@@ -1,0 +1,30 @@
+The Node class is the base class for all nodes in Wiking.
+
+A node is a data object accessed through an url, via the id parameter.
+
+Nodes are stored as files or in a DB.
+
+A call to a Wiking website requests the corresponding node, that is loaded and then, run.
+
+Example:
+  * In a wiki, each (existing) page corresponds to a wikiNode instance.
+  * When requested, the node is loaded, instanciating a WikiNode object.
+  * The WikiNode object, is then rendered.
+  * The WikiNode object is programmed to support simple page rendering and editing.
+
+  * If we create a new object called AdminNode for example, and that we store as the ":admin" node, then it will be possible to create an admin interface at that adress, the AdminNode handing all requests to the admin node and processing/showing each admin screens.
+
+# Virtual Nodes #
+For the admin example we may find useful to have ":admin:panel1" URIs. In tha case, the system will not fnd the panel1 node, but, as it looks for parent nodes, will find the ":admin" node. This node wil then handle the requests.
+
+Useful, for blogs, forums, search URIs
+
+# Aliases #
+It could be useful to handle aliases. Let's see how.... (aliases table ?)
+
+# Node lifecycle #
+  1. Node is created by W, that queries it from the datastore
+    1. if nothing found the $node->missingchild() of the nearest ancestor of the node is called. Ex: :wiki:page1:non-existing-page calls missingchild() of the :wiki:page1 node.
+  1. Node is checked upon ACL (call to $node->ACLCheck())
+  1. A call to the corresponding do action si done ($node->do\_xyz upon request.format)
+  1. Output calls $node->output()

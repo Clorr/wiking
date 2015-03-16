@@ -1,0 +1,58 @@
+NB: if you prefer, consider "Nodes" as pages
+
+# Base concept #
+
+The concept is to give a lightweight/versatile framework. Usual frameworks use a base Controller to do all the stuff. We should respect this in respect with MVC model. But how to do when we want to have functions like blog, wiki, forum... dispatched across the website ?
+
+## Node tree ##
+The structure of a wiking website is stored as a node tree. Each node is an instance of an Object, which inherited from the Node parent, that will act as the controller when loaded.
+
+Ex :
+```
+  :        WikiNode -> is a wiki page
+  :contact WikiNode -> is a wiki page
+  :blog    BlogNode -> is a blog
+```
+
+## Node controllers ##
+
+A request to a Wiking app will load the appropriate Node, and launch the requested action. Wiking is loaded in a first init procedure :
+  1. load system
+  1. parse request
+  1. load Node controller
+  1. do the requested action
+
+(As Wiking is a farm, this is done in the 'animal' index.php, so this can be customized).
+
+This procedure finds in the website nodetree which Node controller to load. Once loaded, the node is fired.
+
+Wiking itself doesn't do more than that. All the following action are done by the node controller.
+
+Ex:
+```
+   in the above site structure, if the url indicates :contact, then the corresponding WikiNode instance will be loaded. 
+```
+
+## Node rendering ##
+
+Once a node is loaded, by default, we perform 'actions' on it . Actions are indicated by the 'do' parameter. Default is 'show'.
+
+Each Node type has its own actions handler, but these can be overriden/extended by plugins.
+
+### Output ###
+In order to use templates and cache, Wiking defines a Output class, which has handlers like HTMLOutput
+
+Ex:
+```
+   WikiNode, for the 'show' action does :
+   - Create HTMLOutput
+   - Populates it with it''s WikiNode data (title, content...) (remember :contact is an __instance__ of WikiNode)
+   - Render this output, using template
+```
+
+
+
+
+
+
+

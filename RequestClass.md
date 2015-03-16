@@ -1,0 +1,1 @@
+Request class is used for incoming request. It handles url rewriting and maps request to the system organisation.

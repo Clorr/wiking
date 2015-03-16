@@ -1,0 +1,1 @@
+WClass is used for system related tasks, like config. No real definiton yet.
